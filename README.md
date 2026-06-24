@@ -1,5 +1,7 @@
 # SCANLINE — barcode & QR studio
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Client-side generator for 1D barcodes and styled QR codes. No backend, no tracking —
 everything runs in the browser, so the data you encode never leaves the page.
 
@@ -12,8 +14,11 @@ onto any surface.
   bar width, quiet zone, text size, and bar color are fixed. Invalid input is reported
   inline. Export SVG.
 - **QR codes** via [qr-code-styling](https://github.com/kozakdenys/qr-code-styling):
-  dot & eye styles and error-correction level (L/M/Q/H, default Low). Foreground color
-  is fixed and logos are not supported. Export SVG.
+  encode a **custom URL**, or a **Lolev beer page** — a fixed `https://lolev.beer/beer/`
+  prefix plus a slug, where the slug also names the exported file. Choose the dot style,
+  eye-frame style, eye-center style, and size. Error-correction level (Low), margin (0),
+  foreground color, and background (transparent) are fixed; logos are not supported.
+  Export SVG.
 
 ## Develop
 
@@ -33,6 +38,6 @@ to any static host (Vercel, Netlify, GitHub Pages, an S3 bucket, …).
 | ---------------- | ------------------------------------------------------------ |
 | `index.html`     | Markup for both control panels + the preview viewport.       |
 | `src/main.ts`    | App shell: tab switching, live render, SVG downloads.        |
-| `src/barcode.ts` | JsBarcode wrapper (SVG preview + PNG raster, with validity). |
+| `src/barcode.ts` | JsBarcode wrapper (SVG preview/export, with typed validity).  |
 | `src/qr.ts`      | Maps the QR form to qr-code-styling `Options`.               |
 | `src/style.css`  | Visual system (instrument-panel theme).                      |
