@@ -1,0 +1,21 @@
+{
+  "name": "barcode-qr",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Barcode + QR code generator using JsBarcode and qr-code-styling",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/jsbarcode": "^3.11.4",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.0"
+  },
+  "dependencies": {
+    "jsbarcode": "^3.12.3",
+    "qr-code-styling": "^1.9.2"
+  }
+}
