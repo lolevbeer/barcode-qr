@@ -29,9 +29,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      # npm install (not ci): the lockfile omits Linux-only optional deps
-      # (@emnapi/*, rollup native) recorded on macOS, which `npm ci` rejects.
-      - run: npm install --no-audit --no-fund
+      - run: npm ci
       - run: npm run build -- --base=./
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
