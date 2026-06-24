@@ -73,7 +73,23 @@
         <!-- ======================= QR CONTROLS ======================= -->
         <section class="panel" data-panel="qr" aria-label="QR code controls" hidden>
           <div class="field span-2">
-            <label for="qr-data">Data or URL</label>
+            <label for="qr-source">Link</label>
+            <select id="qr-source">
+              <option value="beer" selected>Lolev Url</option>
+              <option value="custom">Custom URL</option>
+            </select>
+          </div>
+
+          <div class="field span-2" data-qr-src="beer">
+            <label for="qr-slug">Beer page · filename</label>
+            <div class="prefix-input">
+              <span class="prefix">https://lolev.beer/beer/</span>
+              <input id="qr-slug" type="text" placeholder="my-beer" autocomplete="off" spellcheck="false" />
+            </div>
+          </div>
+
+          <div class="field span-2" data-qr-src="custom" hidden>
+            <label for="qr-data">Custom URL</label>
             <textarea id="qr-data" rows="2" autocomplete="off" spellcheck="false">https://example.com</textarea>
           </div>
 

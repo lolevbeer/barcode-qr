@@ -75,9 +75,16 @@ function renderBarcodeMode() {
 const qrContainer = $("#qr-canvas");
 let qr: QRCodeStyling | null = null;
 
+// QR data comes from one of two sources: a fully custom URL, or the Lolev beer
+// page — a fixed prefix plus a slug. In beer mode the slug also names the export.
+const BEER_PREFIX = "https://lolev.beer/beer/";
+const qrSlug = () => val("qr-slug").trim();
+const qrIsBeer = () => val("qr-source") === "beer";
+const qrData = () => (qrIsBeer() ? BEER_PREFIX + qrSlug() : val("qr-data"));
+
 function qrState(): QrState {
   return {
-    data: val("qr-data"),
+    data: qrData(),
     size: num("qr-size"),
     dotType: val("qr-dot-type") as QrState["dotType"],
     cornerSquareType: val("qr-cs-type") as QrState["cornerSquareType"],
@@ -114,8 +121,20 @@ $("#bc-download-svg").addEventListener("click", () => {
   );
 });
 $("#qr-download-svg").addEventListener("click", () =>
-  qr?.download({ name: "qr-code", extension: "svg" }),
+  qr?.download({
+    name: (qrIsBeer() && qrSlug()) || "qr-code",
+    extension: "svg",
+  }),
 );
+
+// ---- qr source toggle (custom URL vs. Lolev beer slug) ----
+$("#qr-source").addEventListener("change", () => {
+  const src = val("qr-source");
+  document
+    .querySelectorAll<HTMLElement>("[data-qr-src]")
+    .forEach((el) => (el.hidden = el.dataset.qrSrc !== src));
+  render();
+});
 
 // ---- barcode tier presets ----
 $("#bc-tier").addEventListener("change", () => {

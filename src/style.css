@@ -120,8 +120,20 @@ body {
 .section::before { content: "— "; color: var(--fg-3); }
 
 .field { display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.field[hidden] { display: none; }
 .field label,
 .toggle span { font-size: 10px; font-weight: 500; color: var(--fg-2); }
+
+/* read-only prefix label before the beer-slug input; only the input is underlined */
+.prefix-input { display: flex; align-items: baseline; }
+.prefix-input .prefix {
+  font-family: var(--display);
+  font-size: 15px;
+  color: var(--fg-3);
+  white-space: nowrap;
+  padding: 6px 0;
+}
+.prefix-input input { padding-left: 0; }
 
 /* underline-style inputs */
 input[type="text"],
@@ -256,7 +268,7 @@ select option { background: #111; color: var(--fg); }
 .paper svg, .paper canvas, .paper #qr-canvas { max-width: 100%; height: auto; display: block; }
 /* preview-only: barcodes render small, so show them at 2×. zoom (not transform)
    so the white paper reflows to wrap the enlarged code; export keeps real size. */
-#barcode { zoom: 2; }
+#barcode, #qr-canvas { zoom: 2; }
 .paper.invalid { box-shadow: 0 0 0 1px var(--danger); }
 
 .preview-meta { margin: 0; font-size: 9.5px; color: var(--fg-3); }

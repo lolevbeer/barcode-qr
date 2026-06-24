@@ -27,7 +27,12 @@ export function qrOptions(s: QrState): Options {
     data: s.data || " ",
     margin: 0, // fixed — no quiet zone
     qrOptions: { errorCorrectionLevel: "L" }, // fixed Low (7%)
-    dotsOptions: { type: s.dotType, color: COLOR },
+    // roundSize:false keeps the dot size fractional so the modules fill `size`
+    // exactly. With the default (true) the dot size floors to an integer px and
+    // the centered leftover shows as a margin once the QR version grows past
+    // ~v2 (≈32 chars), where size/moduleCount stops dividing evenly. SVG output
+    // handles fractional coordinates fine.
+    dotsOptions: { type: s.dotType, color: COLOR, roundSize: false },
     backgroundOptions: { color: "transparent" }, // always transparent
     cornersSquareOptions: { type: s.cornerSquareType, color: COLOR },
     cornersDotOptions: { type: s.cornerDotType, color: COLOR },
